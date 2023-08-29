@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Matches for {{ tournament.name }}</h1>
+    <div class="btn-block">
+        <a href="{{ path('home') }}" class="btn back">Back to Home</a>
+        <a href="{{ path('tournaments_list') }}" class="btn back">Back to Tournaments</a>
+    </div>
+    {% set currentDate = null %}
+    {% for match in matches %}
+        {% if currentDate != match.date|date('Y-m-d') %}
+            {% if currentDate is not null %}
+                </div>
+            {% endif %}
+            <div class="matches-per-day">
+            <h2>{{ match.date|date('Y-m-d') }}</h2>
+            {% set currentDate = match.date|date('Y-m-d') %}
+        {% endif %}
+        <p>
+            {{ match.team1.name }} vs {{ match.team2.name }} - {{ match.date|date('H:i') }}
+        </p>
+    {% endfor %}
+    </div>
+{#    <table>#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th>Team 1</th>#}
+{#            <th>Team 2</th>#}
+{#            <th>Date</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for match in matches %}#}
+{#            <tr>#}
+{#                <td>{{ match.team1.name }}</td>#}
+{#                <td>{{ match.team2.name }}</td>#}
+{#                <td>{{ match.date|date('Y-m-d H:i') }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{% endblock %}

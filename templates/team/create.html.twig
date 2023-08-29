@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Create New Team</h1>
+    <div class="btn-block">
+        <a href="{{ path('home') }}" class="btn back">Back to Home</a>
+        <a href="{{ path('team_list') }}" class="btn back">Back to Teams</a>
+    </div>
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <button type="submit" class="btn">Create</button>
+    {{ form_end(form) }}
+{% endblock %}

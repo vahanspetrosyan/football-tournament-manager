@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <h1>Create New tournament</h1>
+    <div class="btn-block">
+        <a href="{{ path('home') }}" class="btn back">Back to Home</a>
+        <a href="{{ path('tournaments_list') }}" class="btn back">Back to Tournaments</a>
+    </div>
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <button type="submit" class="btn">Create</button>
+    {{ form_end(form) }}
+{% endblock %}

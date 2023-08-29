@@ -1,0 +1,31 @@
+home:
+  path: /
+  controller: App\Controller\HomeController::index
+
+team_list:
+  path: /teams
+  controller: App\Controller\TeamController::index
+
+team_create:
+  path: /teams/create
+  controller: App\Controller\TeamController::create
+
+team_delete:
+  path: /teams/{id}/delete
+  controller: App\Controller\TeamController::delete
+
+tournaments_list:
+  path: /tournaments
+  controller: App\Controller\TournamentController::index
+
+tournament_create:
+  path: /tournaments/create
+  controller: App\Controller\TournamentController::create
+
+tournament_delete:
+  path: /tournaments/{id}/delete
+  controller: App\Controller\TournamentController::delete
+
+tournament_view:
+  path: /tournaments/{slug}
+  controller: App\Controller\TournamentController::view

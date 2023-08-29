@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tournament List</h1>
+    <div class="btn-block">
+        <a href="{{ path('home') }}" class="btn back">Back to Home</a>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tournament in tournaments %}
+            <tr>
+                <td>{{ tournament.name }}</td>
+                <td>
+                    <a href="{{ path('tournament_view', {'slug': tournament.slug }) }}">View</a> |
+                    <a href="{{ path('tournament_delete', {'id': tournament.id, 'token': csrf_token('delete' ~ tournament.id) }) }}" onclick="return confirm('Are you sure you want to delete this tournament?')">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tournament_create') }}" class="btn">Create New tournament</a>
+{% endblock %}
