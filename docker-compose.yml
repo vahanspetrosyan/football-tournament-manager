@@ -1,17 +1,28 @@
-# docker-compose.yml
-version: '3.8'
+version: '3.9'
+name: football-tournament-manager
 services:
   app:
+    container_name: football-tournament-manager-app
     build:
       context: .
+      dockerfile: .docker/server/dockerfile
     ports:
-      - "8000:8000"
+      - "8741:80"
+    environment:
+      - 'APP_ENV=dev'
+      - 'DATABASE_URL=mysql://root:root@football-tournament-manager-db:3306/football_db'
+      - 'APP_NAME=Football Tournament Manager'
     volumes:
+      # - .docker/php/vhosts:/etc/apache2/sites-enabled
       - .:/var/www
     depends_on:
       - db
+    # restart: always
+    networks:
+      - exampleNetwork
   db:
-    image: mysql:5.7
+    image: mysql:latest
+    container_name: football-tournament-manager-db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: football_db
@@ -21,5 +32,11 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - exampleNetwork
+
+networks:
+  exampleNetwork:
+
 volumes:
   mysql-data:
